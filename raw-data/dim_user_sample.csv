@@ -1,0 +1,19 @@
+user_key,system_user_id,employment_status,account_claimed_dt,hire_dt,user_security_role,sold_to_party_nbr,business_unit_id,current_yn,effective_dts,next_effective_dts                                                                          
+146,72371,"TERMINATED",20100518,,"terminated","0001305356",,6379,"Y",20141114,90001231                                  
+147,72372,"ACTIVE",20100518,,"account representative","0001305356",,6379,"N",20100518,20141114                          
+148,72372,"TERMINATED",20100518,,"account representative","0001305356",,6379,"N",20141114,20141114                      
+149,72372,"TERMINATED",20100518,,"terminated","0001305356",,6379,"Y",20141114,90001231                                  
+150,72373,"ACTIVE",20100518,,"account representative","0001305356",,6379,"N",20100518,20141114                          
+151,72373,"TERMINATED",20100518,,"account representative","0001305356",,6379,"N",20141114,20141114                      
+152,72373,"TERMINATED",20100518,,"terminated","0001305356",,6379,"Y",20141114,90001231                                  
+153,72377,"ACTIVE",20100518,,"account representative","0001305356",,6379,"N",20100518,20141114                          
+154,72377,"TERMINATED",20100518,,"account representative","0001305356",,6379,"N",20141114,20141114                      
+146,72371,"TERMINATED",20100518,,"terminated","0001305356",,6379,"Y",20141114,90001231                                  
+147,72372,"ACTIVE",20100518,,"account representative","0001305356",,6379,"N",20100518,20141114                          
+148,72372,"TERMINATED",20100518,,"account representative","0001305356",,6379,"N",20141114,20141114                      
+149,72372,"TERMINATED",20100518,,"terminated","0001305356",,6379,"Y",20141114,90001231                                  
+150,72373,"ACTIVE",20100518,,"account representative","0001305356",,6379,"N",20100518,20141114                          
+151,72373,"TERMINATED",20100518,,"account representative","0001305356",,6379,"N",20141114,20141114                      
+152,72373,"TERMINATED",20100518,,"terminated","0001305356",,6379,"Y",20141114,90001231                                  
+153,72377,"ACTIVE",20100518,,"account representative","0001305356",,6379,"N",20100518,20141114                          
+154,72377,"TERMINATED",20100518,,"account representative","0001305356",,6379,"N",20141114,20141114                      
