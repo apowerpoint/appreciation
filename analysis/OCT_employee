@@ -1,0 +1,71 @@
+## OC Tanner
+
+setwd("~/Documents/Topics/OCTanner")
+
+# Might not be needed:  Sys.setlocale('LC_ALL','C') 
+
+library(data.table)
+
+fileName <- "dim_user_deduped.csv"  
+sample <- 100000000
+
+emp <- data.frame(read.csv(fileName,sep=",",header=T, nrow=sample))
+# names(emp) <- c("userkey","sysID","empStatus","firstLogin","hireDate","role","company","managerID","busUnit","current","effDate","nextDate")
+
+
+## Create business unit and company stats - new file has 18m records
+# 120k business units with 3m employees; total of 150 companies
+# emp ID and BU ID required to uniquely identify a recognition event 
+  # sysID can be in different BUs; it is unique across companies
+
+emp <- data.table(emp)
+e_bu <- emp[,length(userkey),by=c('company','busUnit','sysID')]
+
+e_bus <- as.data.frame(e_bu[,length(V1),by=busUnit])
+names(e_bus) <- c("busUnit","employees")
+
+e_cb <- e_bu[,length(V1),by=c('company','busUnit')]
+e_cb <- as.data.frame(e_cb[,length(V1),by=company])
+names(e_cb) <- c("company","units")
+
+e_co <- e_bu[,length(V1),by=c('company','sysID')]
+e_co <- as.data.frame(e_co[,length(V1),by=company])
+names(e_co) <- c("company","employees")
+
+nrow(e_co)  # Companies and number of employees per company
+summary(e_co$employees)  
+
+nrow(e_bus)  # Business units and of employees per business unit
+summary(e_bus$employees) 
+
+nrow(e_cb)  # Number of business units per company
+summary(e_cb$units)      
+
+
+
+## Pick in IQR of employees --   
+bu <- subset(e_bus,e_bus$employees >= 5 & e_bus$employees <= 21)
+co <- subset(e_co,e_co$employees >= 2000 & e_co$employees <= 12500)
+
+output <- "listOfBU.csv"
+write.table(bu,file=output,sep=",",row.names=F)
+bu <- data.frame(read.csv("listOfBU.csv"))
+
+output <- "listOfCO.csv"
+write.table(co,file=output,sep=",",row.names=F)
+co <- data.frame(read.csv("listOfCO.csv"))
+
+## Merge back against emp to filter raw data
+elist <- merge(bu,e_bu,by="busUnit")
+
+output <- "empInBU.csv"
+write.table(elist,file=output,sep=",",row.names=F)
+
+
+elist <- merge(co,e_bu,by="company")
+
+output <- "empInCO.csv"
+write.table(elist,file=output,sep=",",row.names=F)
+
+# Clean up
+rm(e_bus,e_bu,e_co,e_cb)
