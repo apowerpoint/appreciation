@@ -1,13 +1,13 @@
 
-# Explore the two filtered and cleaned datasets
-# They can be downloaded from google drive:
-# 
-
+# Read in the two filtered and cleaned datasets
 
 setwd("~/personal/octanner/raw_data")
 
 data = read.csv("fact_recognition-cleaned-37cols_deduped.csv")
 emp = read.csv("dim_user_deduped.csv")
+dictionary = read.csv("fact_recognition-dictionary.csv")
+good_cols = dictionary$pct_negative < .8 & dictionary$pct_na < .8 & dictionary$pct_unknown < .8
+dictionary[good_cols,]
 
 
 #### USERS
@@ -65,5 +65,26 @@ for (i in 1:20 ){
 
 
 
+head(data[,good_cols])
+
+
+
+#### Questions
+
+# what companies have both giver and reciever data?
+
+# what companies use eproducts?
+
+# what companies use points
+# - for those that use points what is aggregate point value over time?
+
+# cluster the companies based on number of employees
+
+# for a given company size
+# - what is the typical recognition trend over time
+# - what is the aggregate count of active users over time?
+# - ratio of active users over time?
+# - can we infer anything about time employee is with company?
+# - can we infer anything about time to promotion?
 
 
